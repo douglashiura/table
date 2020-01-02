@@ -1,15 +1,7 @@
 package table;
 
-public class HeaderCell implements Cell{
-
-	private String content;
-
+public class HeaderCell extends AbstractCell {
 	public HeaderCell(String content) {
-		this.content = content;
+		super("th", content);
 	}
-
-	public String toHtml() {
-		return String.format("<th>%s</th>", content);
-	}
-
 }

@@ -8,15 +8,23 @@ public class Table {
 	private List<Row> headers;
 	private List<Row> bodies;
 	private List<Row> footers;
+	private Boolean hasBorder;
+	private Style style;
 
 	public Table() {
+		hasBorder = Boolean.FALSE;
 		headers = new LinkedList<Row>();
 		bodies = new LinkedList<Row>();
 		footers = new LinkedList<Row>();
 	}
 
 	public Object toHtml() {
-		return String.format("<table>%s</table>", headers());
+		String border = hasBorder ? " border=\"1\"" : "";
+		String style = "";
+		if (this.style != null) {
+			style = " style=\"" + this.style.toHtml() + "\"";
+		}
+		return String.format("<table%s%s>%s</table>", border, style, headers());
 	}
 
 	private String headers() {
@@ -49,6 +57,14 @@ public class Table {
 
 	public void addFooter(Row row) {
 		footers.add(row);
+	}
+
+	public void setBorder() {
+		hasBorder = Boolean.TRUE;
+	}
+
+	public void setStyle(Style style) {
+		this.style = style;
 	}
 
 }

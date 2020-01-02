@@ -6,6 +6,7 @@ import java.util.List;
 public class Row {
 
 	private List<Cell> cells;
+	private Style style;
 
 	public Row() {
 		cells = new LinkedList<Cell>();
@@ -20,7 +21,16 @@ public class Row {
 		cells.forEach(cell -> {
 			cellHtml.append(cell.toHtml());
 		});
-		return String.format("<tr>%s</tr>", cellHtml);
+
+		String style = "";
+		if (this.style != null) {
+			style = " style=\"" + this.style.toHtml() + "\"";
+		}
+		return String.format("<tr%s>%s</tr>", style, cellHtml);
+	}
+
+	public void setStyle(Style style) {
+		this.style = style;
 	}
 
 }
