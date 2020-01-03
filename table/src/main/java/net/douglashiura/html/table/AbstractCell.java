@@ -1,4 +1,4 @@
-package table;
+package net.douglashiura.html.table;
 
 public class AbstractCell implements Cell {
 

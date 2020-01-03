@@ -1,23 +1,17 @@
-package table;
+package test.net.douglashiura.html.table;
 
 import static org.junit.Assert.assertEquals;
 
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-import javax.swing.JEditorPane;
-
-import org.jsoup.Jsoup;
-import org.jsoup.helper.W3CDom;
-import org.jsoup.nodes.Document;
 import org.junit.Test;
 
-import jankovicsandras.imagetracer.ImageTracer;
+import net.douglashiura.html.table.BodyCell;
+import net.douglashiura.html.table.Cell;
+import net.douglashiura.html.table.HeaderCell;
+import net.douglashiura.html.table.Row;
+import net.douglashiura.html.table.Style;
+import net.douglashiura.html.table.Table;
 
 public class TableTest {
-
 
 	@Test
 	public void empty() throws Exception {
@@ -85,13 +79,14 @@ public class TableTest {
 		assertEquals("<table><tbody><tr style=\"border:1px solid;\"><td>Cell</td></tr></tbody></table>",
 				table.toHtml());
 	}
+
 	@Test
 	public void bodyOneCellStyle() throws Exception {
 		Table table = new Table();
 		Row row = new Row();
 		Style style = new Style();
 		style.setBorder("1px solid");
-		Cell cell=new BodyCell("Cell");
+		Cell cell = new BodyCell("Cell");
 		cell.setStyle(style);
 		row.addCell(cell);
 		table.addBody(row);
@@ -135,31 +130,6 @@ public class TableTest {
 		assertEquals(
 				"<table><tfoot><tr><th>Cell</th><th>Cell</th></tr><tr><th>Cell</th><th>Cell</th></tr></tfoot></table>",
 				table.toHtml());
-	}
-
-	@Test
-	public void jsoup() throws Exception {
-		Document document = Jsoup.parse(
-				"<table><tfoot><tr><th>Cell</th><th>Cell</th></tr><tr><th>Cell</th><th>Cell</th></tr></tfoot></table>");
-		W3CDom transform = new W3CDom();
-		transform.fromJsoup(document);
-		document.getAllElements().forEach(element -> {
-			System.out.println(element.nodeName());
-		});
-
-	}
-
-	public static void main(String[] args) throws Exception {
-		JEditorPane frame = new JEditorPane("text/html",
-				"<table><thead><tr style=\"border: 1px solid;\"><th>Cell</th><th>Cell</th></tr><tr><th>Cell</th><th>Cell</th></tr></thead></table>");
-		frame.setSize(595, 842);
-		BufferedImage image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
-		Graphics2D g = image.createGraphics();
-		frame.printAll(g);
-		image.flush();
-		ImageIO.write(image, "png", new File("image.png"));
-		ImageTracer.saveString("output.svg", ImageTracer.imageToSVG("image.png", null, null));
-
 	}
 
 }

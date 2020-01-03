@@ -1,4 +1,4 @@
-package table;
+package net.douglashiura.html.table;
 
 import java.util.LinkedList;
 import java.util.List;

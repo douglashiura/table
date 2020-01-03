@@ -1,4 +1,4 @@
-package table;
+package net.douglashiura.html.table;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Table {
 		footers = new LinkedList<Row>();
 	}
 
-	public Object toHtml() {
+	public String toHtml() {
 		String border = hasBorder ? " border=\"1\"" : "";
 		String style = "";
 		if (this.style != null) {

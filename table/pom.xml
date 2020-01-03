@@ -18,7 +18,7 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.8.3</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>net.image-trace</groupId>
 			<artifactId>ImageTrace</artifactId>
@@ -26,7 +26,17 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/resources/ImageTracer.jar</systemPath>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>nz.ac.waikato.cms.weka</groupId>
+			<artifactId>weka-stable</artifactId>
+			<version>3.8.3</version>
+		</dependency>
 
+		<dependency>
+			<groupId>com.esri.geometry</groupId>
+			<artifactId>esri-geometry-api</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+	</dependencies>
 
 </project>
